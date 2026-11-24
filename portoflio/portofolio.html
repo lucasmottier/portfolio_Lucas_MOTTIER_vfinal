@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio Scolaire</title>
+    
+    <!-- LE CSS : C'est ici qu'on gère le design et les couleurs -->
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --primary: #2563eb;
+        }
+
+        /* Couleurs quand le mode sombre est activé */
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f1f1f1;
+            --card-bg: #1e1e1e;
+            --primary: #60a5fa;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Barre de navigation (les boutons des galeries) */
+        nav {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #e2e8f0;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        button.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Contenu principal */
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Les sections (galeries) sont cachées par défaut, sauf celle qui est active */
+        .galerie {
+            display: none;
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            animation: fadeIn 0.4s;
+        }
+
+        .galerie.active {
+            display: block;
+        }
+
+        /* Grille pour les projets */
+        .grille-projets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .carte {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LE HTML : C'est ici qu'on écrit le contenu de la page -->
+    <header>
+	<div style="display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 800px; margin: 0 auto; padding: 10px;">
+        
+        	<!-- Ta photo -->
+        	<img src="photo.jpg" alt="Lucas MOTTIER" style="width: 135px; height: 135px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary);">
+        
+        	<!-- Ton texte de présentation -->
+        	<div style="text-align: left;">
+            		<h1>Lucas MOTTIER</h1>
+            		<p style="margin: 0;">Etudiant en 3ème année d'école d'ingénieur à SIGMA Clermont.</p>
+			<p style="margin: 0;">Spécialisé en Matériaux Innovants et Durables.</p>
+			<p style="margin: 0;">lucas.mottier@sigma-clermont.fr || 06 43 68 52 58 .</p>
+        </div>
+
+    </div>
+	
+        <button onclick="changerTheme()">🌓 Mode Sombre / Clair</button>
+        
+        <nav>
+            <button class="nav-btn active" onclick="ouvrirGalerie('presentation', this)">Présentation</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('formation', this)">Formations & Expériences</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('projets', this)">Projets</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('competences', this)">Compétences & Outils</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('contact', this)">Contact</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. GALERIE PRÉSENTATION -->
+        <section id="presentation" class="galerie active">
+            <h2>Présentation générale</h2>
+            <p style="margin: 0; line-height: 1.5; text-align: justify;">
+	       Bonjour ! Je m'appelle <strong>Lucas MOTTIER</strong> et je suis actuellement étudiant en troisième année d'école d'ingénieur à SIGMA Clermont.</p>
+	    <br>
+            <p style="margin: 0; line-height: 1.5; text-align: justify;">
+	       Au début de ma deuxieme année, je me suis spécialisé dans la "Structure des matériaux" afin d'en apprendre plus sur ces matériaux et leurs propriétés mécanique.
+               Voulant en apprendre plus sur ces derniers, j'ai donc décidé de me spécialisé dans les matériaux innovants et durables.
+	       Durant tout le long de mon parcours à SIGMA Clermont, j'ai eu la chance de participer à de nombreux projets qui sont décris dans l'onglet concerné.</p>
+	    <br>
+	    <p style="margin: 0; line-height: 1.5; text-align: justify;">
+	       Après l'optention de mon baccaulauréat, spécialité Mathématiques/Physique-Chimie option Mathématiques expertes, mention bien, 
+               j'ai intégré une CPGE MPSI option science de l'ingénieur pour ensuite aller en MP (anciennement Maths SUP/ Maths SPE).
+	       Cette classe préparatoire m'a ensuite permis d'intégré SIGMA Clermont.</p>
+	    <br>
+	    <p style="margin: 0; line-height: 1.5; text-align: justify;">
+	       Depuis petit, je pratique le tennis de table en compétition. J'ai donc appris dès le plus jeune age l'esprit d'équipe, de compétition et associatif.
+	       Ainsi, tout le long de mon parcours, cela m'a aidé a participé a de nombreux aux travaux de groupe et aux projets de grande ampleur.
+               C'est, entre autre, pour cela que je suis très engagé dans la vie associative de l'école. Par exemple, j'ai pu faire parti du bureau des élèves,
+	       en tant que responsable du Week-End d'Integration.Ces projets m'ont permis de développé mon esprit de rigueur, ma persévérance ainsi que ma confiance en moi.</p>
+        </section>
+
+        <!-- 2. GALERIE FORMATION & EXPÉRIENCES -->
+        <section id="formation" class="galerie">
+            <h2>Formations et Expériences Professionnelles</h2>
+            <h3>💼Experiences</h3>
+            <ul>
+		<li style="margin-bottom: 15px;">
+			<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px;">
+    
+    				<!-- Bloc texte à gauche -->
+    				<div>
+        				<strong>2026 - 2027 :</strong> Membre de l'équipe du foyer de l'école | Clermont-Ferrand, France.<br>
+        				<span style="font-size: 0.9em; color: #666;">Gestion de l'organisation des événements et de stocks tout en animant la vie étudiante.</span>
+    				</div>
+
+    				<!-- Image / Logo tout à droite -->
+    				<img src="FizZteam.jpg" alt="Logo du foyer" style="width: 110px; height: 110px; object-fit: contain; border-radius: 8px; flex-shrink: 0;">
+			</div>
+		</li>
+		<li style="margin-bottom: 15px;">
+			<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px;">
+    
+    				<!-- Bloc texte à gauche -->
+    				<div style="text-align: justify;">
+        				<strong>Mai 2026 - Septembre 2026:</strong> Stagiaire en tant qu'assistant ingénieur à Radiall Italy SRL | Rho-Milan, Italie.<br>
+        				<span style="font-size: 0.9em; color: #666;">Stagiare dans un bureau d'étude en tant qu'assistant ingénieur tout en effectuant une intégration dans un departement R&D, des soutiens aux activités de test, une gestion des données, des projets d'amélioration avec livrables. Prise en main de SolidWorks professionnel afin de créer des plans et des pièces 3D précises pour le montage de connecteurs électroniques.</span>
+					<br>
+					<a href="https://www.radiall.com/fr/insights/italia" target="_blank" style="color: var(--primary); font-weight: bold;">
+    						🔗 Voir le site de Radiall Italie
+					</a>
+    				</div>
+
+    				<!-- Image / Logo tout à droite -->
+    				<img src="Radiall.jpg" alt="Logo de Radiall" style="width: 110px; height: 110px; object-fit: contain; border-radius: 8px; flex-shrink: 0;">
+			</div>
+			<div style="text-align: center; margin-top: 15px;">
+        			<img src="radiall_travail.jpg" alt="Animation centre aéré" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            		</div>
+
+		</li>
+		<li style="margin-bottom: 15px;">
+			<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px;">
+    
+    				<!-- Bloc texte à gauche -->
+    				<div style="text-align: justify;">
+        				<strong>Mars 2025 - Mars 2026:</strong> Organisateur du Week-End d'intégration, membre du bureau des étudiants | Clermont-Ferrand, France.<br>
+        				<span style="font-size: 0.9em; color: #666;">Contact d’opérateurs pour l'organisation du Week-End, étude et comparaison d’offres, passage de commandes de goodies,de nourritures et de boisson, étude de devis, création d’une billetterie tout en respectant un budget de 90k euros pour un groupe de 500 étudiants en binôme.</span>
+					<br>
+					<a href="https://bdesigma.fr/" target="_blank" style="color: var(--primary); font-weight: bold;">
+    						🔗 Voir le site du BDE
+					</a>    				
+				</div>
+
+    				<!-- Image / Logo tout à droite -->
+    				<img src="BDE.jpg" alt="Logo du BDE" style="width: 110px; height: 110px; object-fit: contain; border-radius: 8px; flex-shrink: 0;">
+			</div>
+			<div style="text-align: center; margin-top: 15px;">
+        			<img src="BDE_groupe.jpg" alt="Animation centre aéré" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            		</div>
+		</li>
+		<li style="margin-bottom: 15px;">
+			<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px;">
+    
+    				<!-- Bloc texte à gauche -->
+    				<div style="text-align: justify;">
+        				<strong>Juillet 2025 :</strong> Stagiaire en tant qu'assistant monteur, Getinge Life Science France | Vendôme, France.<br>
+        				<span style="font-size: 0.9em; color: #666;">Assistant de monteur d’usinage dans une entreprise pour des produits de précision assurant l'étanchéité sur des lignes de production pharmaceutique. Test de conformité et du bon fonctionnement des produits. </span>
+					<br>
+					<a href="https://www.getinge.com/fr/" target="_blank" style="color: var(--primary); font-weight: bold;">
+    						🔗 Voir le site de Getinge Life Science France
+					</a>    				
+				</div>
+
+    				<!-- Image / Logo tout à droite -->
+    				<img src="Getinge.jfif" alt="Logo de Getinge" style="width: 110px; height: 110px; object-fit: contain; border-radius: 8px; flex-shrink: 0;">
+			</div>
+			<div style="text-align: center; margin-top: 15px;">
+        			<img src="getinge_travail.jpg" alt="Animation centre aéré" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            		</div>
+		</li>
+		<li style="margin-bottom: 15px;">
+			<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px;">
+    
+    				<!-- Bloc texte à gauche -->
+    				<div style="text-align: justify;">
+        				<strong>Depuis 2020:</strong> Animateur dans un centre aéré, BAFA | Azé, France.<br>
+        				<span style="font-size: 0.9em; color: #666;"> Animateur d'enfant de 3 à 10 ans, creation d'activité manuelle et sportive pour l </span>
+					<br>				
+				</div>
+
+    				<!-- Image / Logo tout à droite -->
+    				<img src="bafa.jpg" alt="Logo de bafa" style="width: 110px; height: 110px; object-fit: contain; border-radius: 8px; flex-shrink: 0;">
+			</div>
+			<div style="text-align: center; margin-top: 15px;">
+        			<img src="bafa_travail.jpg" alt="Animation centre aéré" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            		</div>
+		</li>
+
+            </ul>
+            <h3>🎓Formations</h3>
+            <ul>
+		<li style="margin-bottom: 15px;">
+			<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px;">
+    
+    				<!-- Bloc texte à gauche -->
+    				<div style="text-align: justify;">
+        				<strong>2024 - 2027:</strong> INP SIGMA Clermont, Ingénieur mécanique | Clermont-Ferrand, France.<br>
+        				<span style="font-size: 0.9em; color: #666;">Etude en deuxième année en structure des matériaux(SMA) pour ce spécialisé en Matériaux innovant et durable (MID). Etude des matériaux, de leurs comportements et de leurs propriétés. Prise en main d'outil informatique et de machine d'essai a l'aide de professionnel. .  </span>
+					<br>
+					<a href="https://www.sigma-clermont.fr/fr/index.html" target="_blank" style="color: var(--primary); font-weight: bold;">
+    						🔗 Voir le site de SIGMA Clermont
+					</a>    				
+				</div>
+
+    				<!-- Image / Logo tout à droite -->
+    				<img src="SIGMA.png" alt="Logo de sigma" style="width: 110px; height: 110px; object-fit: contain; border-radius: 8px; flex-shrink: 0;">
+			</div>
+			<div style="text-align: center; margin-top: 15px;">
+        			<img src="SIGMA_ecole.jpg" alt="Animation centre aéré" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            		</div>
+		</li>
+		<li style="margin-bottom: 15px;">
+			<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px;">
+    
+    				<!-- Bloc texte à gauche -->
+    				<div style="text-align: justify;">
+        				<strong>2022 - 2024:</strong> CPGE MPSI/MP, lycée Dessaignes | Blois, France.<br>
+        				<span style="font-size: 0.9em; color: #666;"> Option science de l'ingénieur, étude très approfondie des mathématiques et de la physique chimie. Présentation de nombreux livrables (écrits et oraux) tout en respectant un emploi du temps très chargé.   </span>
+					<br>
+					<a href="https://lycee-dessaignes.fr/les-enseignements/prepa/mpsi-mp/" target="_blank" style="color: var(--primary); font-weight: bold;">
+    						🔗 Voir le site du lycée Dessaignes
+					</a>    				
+				</div>
+
+    				<!-- Image / Logo tout à droite -->
+    				<img src="dessaignes.png" alt="Logo de sigma" style="width: 110px; height: 110px; object-fit: contain; border-radius: 8px; flex-shrink: 0;">
+			</div>
+			<div style="text-align: center; margin-top: 15px;">
+        			<img src="dessaignes_lycee.jpg" alt="Animation centre aéré" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            		</div>
+		</li>
+
+            </ul>
+        </section>
+
+        <!-- 3. GALERIE PROJETS -->
+	<section id="projets" class="galerie">
+    	<h2>Mes Projets</h2>
+
+    	<div class="grille">
+        
+        	<!-- PROJET 3EME ANNEE  -->
+        	<div class="carte" style="padding: 25px; border: 1px solid #ddd; border-radius: 10px;">
+            		<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 25px; flex-wrap: wrap;">
+                
+                		<!-- Texte détaillé à gauche -->
+                		<div style="flex: 1; min-width: 280px; text-align: justify;">
+                    			<h3 style="margin-top: 0;">Projet 3ème année (en cours) : Comparaison de méthodes d’estimation d’une limite de fatigue 
+</h3>
+                    			<p>En partenariat avec SAFRAN, mise en place de codes python et d'autres experiences pour determiner la fiabilité d'une méthode de comparaison.</p>
+                    			<p>Découverte de différentes méthodes de comparaison, codage en python avec des échantillons précis, auto-management du temps de projet, livrables professionnels envoyé aux responsable du projet.</p>
+                		</div>
+
+                		<!-- Photo du projet à droite -->
+                		<div style="flex-shrink: 0; text-align: center;">
+                    			<img src="safran.jpg" alt="Aperçu du projet 1" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                		</div>
+
+            		</div>
+        	</div>
+
+        	<!-- CARTE PROJET 2 -->
+        	<div class="carte" style="padding: 25px; border: 1px solid #ddd; border-radius: 10px;">
+            		<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 25px; flex-wrap: wrap;">
+                
+                		<!-- Texte détaillé à gauche -->
+                		<div style="flex: 1; min-width: 280px; text-align: justify;">
+                    			<h3 style="margin-top: 0;">Projet 2ème année : Prédiction par Machine Learning de propriétés matériaux et optimisation inverse pour le design de nouveaux matériaux répondant à des propriétés cibles.</h3>
+                    			<p>En partenariat avec PHIMECA, réalisation d'un code informatique avec un groupe de 7 personnes pour prédire les propriétés de métaux faiblement alliés.</p>
+                    			<p> Etude de différentes méthode de prédiction et de retour inverse pour choisir la plus efficace. Réalisation de présentations écrites et orales afin de présenter le projet qui s'étend sur 8 mois. </p>
+                		</div>
+
+                		<!-- Photo du projet à droite -->
+                		<div style="flex-shrink: 0; text-align: center;">
+                    			<img src="machine learning.jpg" alt="machine learning" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                		</div>
+
+            		</div>
+        	</div>
+        	<!-- CARTE PROJET 3 -->
+        	<div class="carte" style="padding: 25px; border: 1px solid #ddd; border-radius: 10px;">
+            		<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 25px; flex-wrap: wrap;">
+                
+                		<!-- Texte détaillé à gauche -->
+                		<div style="flex: 1; min-width: 280px; text-align: justify;">
+                    			<h3 style="margin-top: 0;">Projet de 1ère année : Réalisation d'un robot autonome.</h3>
+                    			<p>Imagination du fonctionnement,CAO, usinage des pièces et cablage afin de trier des pièces avec le robot.</p>
+                    			<p>Technique de detection de pièces et réalisation du robot avec un groupe de 7 personnes. </p>
+                		</div>
+
+                		<!-- Photo du projet à droite -->
+                		<div style="flex-shrink: 0; text-align: center;">
+                    			<img src="robot.jpg" alt="robot" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                		</div>
+
+            		</div>
+            </div>
+
+    </div>
+</section>
+        <!-- 4. GALERIE COMPÉTENCES & OUTILS -->
+<section id="competences" class="galerie">
+    <h2>Compétences & Outils</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+
+        <!-- CATÉGORIE 1 : CAO & Conception Mécanique -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <h3 style="margin-top: 0; color: var(--primary);">📐 CAO & Conception</h3>
+            <ul style="padding-left: 20px; line-height: 1.7;">
+                <li style="margin-bottom: 10px;">
+                    <strong>SolidWorks (Modélisation 3D & plans)</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('formation', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Stage Radiall Italie ↗
+                        </a>
+                    </span>
+                </li>
+                <li>
+                    <strong>Dimensionnement de pièces mécaniques</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('projets', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Projets SIGMA et Stage Radiall Italie ↗
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CATÉGORIE 2 : Science des Matériaux -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <h3 style="margin-top: 0; color: var(--primary);">🔬 Matériaux & Essais</h3>
+            <ul style="padding-left: 20px; line-height: 1.7;">
+                <li style="margin-bottom: 10px;">
+                    <strong>Structure & propriétés mécaniques</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('formation', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Formation SIGMA ↗
+                        </a>
+                    </span>
+                </li>
+                <li>
+                    <strong>Matériaux innovants & durables</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('projets', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Projets et Formations SIGMA ↗
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CATÉGORIE 3 : R&D et Bureau d'Étude -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <h3 style="margin-top: 0; color: var(--primary);">⚙️ R&D & Bureau d'Étude</h3>
+            <ul style="padding-left: 20px; line-height: 1.7;">
+                <li style="margin-bottom: 10px;">
+                    <strong>Soutien aux activités de test</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('formation', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Stage Radiall Italie ↗
+                        </a>
+                    </span>
+                </li>
+                <li>
+                    <strong>Gestion de données & livrables</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('projets', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Stage Radiall Italie et projets ↗
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CATÉGORIE 4 : Numérique & Bureautique -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <h3 style="margin-top: 0; color: var(--primary);">💻 Numérique & Outils</h3>
+            <ul style="padding-left: 20px; line-height: 1.7;">
+                <li style="margin-bottom: 10px;">
+                    <strong>HTML / Script Python (Bases web)</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('projets', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Création Portfolio et projets ↗
+                        </a>
+                    </span>
+                </li>
+                <li>
+                    <strong>Suite Office (Excel, Word, PowerPoint)</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('projets', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Rapports & Présentations ↗
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CATÉGORIE 5 : Gestion de Projet & Associatif -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <h3 style="margin-top: 0; color: var(--primary);">📋 Gestion & Organisation</h3>
+            <ul style="padding-left: 20px; line-height: 1.7;">
+                <li style="margin-bottom: 10px;">
+                    <strong>Logistique événementielle & stocks</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('formation', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Foyer de l'école ↗
+                        </a>
+                    </span>
+                </li>
+                <li>
+                    <strong>Coordination & responsabilité d'équipe</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('formation', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Engagement associatif ↗
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CATÉGORIE 6 : Savoir-être & Langues -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <h3 style="margin-top: 0; color: var(--primary);">🌍 Langues & Savoir-être</h3>
+            <ul style="padding-left: 20px; line-height: 1.7;">
+                <li style="margin-bottom: 10px;">
+                    <strong>Travail en contexte international (Anglais TOIEC niveau B2/C1)</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('formation', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Stage à Milan (Italie) ↗
+                        </a>
+                    </span>
+                </li>
+                <li>
+                    <strong>Pédagogie, rigueur & esprit d'équipe</strong><br>
+                    <span style="font-size: 0.85em; color: #666;">
+                        ↳ Voir dans : 
+                        <a href="javascript:void(0);" onclick="ouvrirGalerie('formation', null); window.scrollTo(0,0); return false;" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                            Animateur BAFA & Sport ↗
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</section>        
+<!-- 5. GALERIE CONTACT -->
+<section id="contact" class="galerie">
+    <h2>Me Contacter</h2>
+    <p style="margin-bottom: 20px;">N'hésitez pas à me contacter pour toute opportunité de stage ou d'échange professionnel :</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; align-items: center;">
+
+        <!-- COLONNE GAUCHE : Coordonnées -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px; line-height: 2;">
+            <h3 style="margin-top: 0; color: var(--primary);">📬 Coordonnées </h3>
+            
+            <p style="margin: 0;">
+                <strong>📧 Email :</strong> 
+                <a href="mailto:lucas.mottier@sigma-clermont.fr" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                    lucas.mottier@sigma-clermont.fr
+                </a>
+            </p>
+
+            <p style="margin: 0;">
+                <strong>📱 Téléphone :</strong> 
+                <a href="tel:+33643685258" style="color: var(--primary); font-weight: bold; text-decoration: none;">
+                    06 43 68 52 58
+                </a>
+            </p>
+
+            <!-- Bouton pour ouvrir / télécharger le CV -->
+            <div style="margin-top: 20px;">
+                <a href="CV_lucas_mottier.pdf" target="_blank" style="display: inline-block; padding: 12px 18px; background-color: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
+                    📄 Consulter / Télécharger mon CV (PDF)
+                </a>
+            </div>
+        </div>
+
+        <!-- COLONNE DROITE : QR Code LinkedIn cliquable -->
+        <div class="carte" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px; text-align: center;">
+            <h3 style="margin-top: 0; color: var(--primary);">💼 Mon Profil LinkedIn</h3>
+            
+            <!-- L'image du QR code est aussi un lien cliquable -->
+            <a href="https://www.linkedin.com/in/TON-LIEN-LINKEDIN" target="_blank" title="Ouvrir mon profil LinkedIn">
+                <img src="QRcode.png" alt="QR Code LinkedIn Lucas MOTTIER" style="width: 150px; height: 150px; object-fit: contain; border-radius: 8px; border: 2px solid var(--primary); padding: 5px; background: white;">
+            </a>
+            
+            <p style="font-size: 0.85em; color: #666; margin-top: 10px; margin-bottom: 0;">
+                Scannez ce QR code ou <a href="https://www.linkedin.com/in/lucasmottier" target="_blank" style="color: var(--primary); font-weight: bold;">cliquez ici</a> pour accéder à mon profil.
+            </p>
+        </div>
+
+    </div>
+</section>    
+</main>
+
+    <!-- LE JAVASCRIPT : C'est ici qu'on gère les clics et les interactions -->
+    <script>
+        function ouvrirGalerie(nomGalerie, boutonClique) {
+            // 1. On cache toutes les galeries
+            let galeries = document.querySelectorAll('.galerie');
+            galeries.forEach(g => g.classList.remove('active'));
+
+            // 2. On enlève la couleur active de tous les boutons
+            let boutons = document.querySelectorAll('.nav-btn');
+            boutons.forEach(b => b.classList.remove('active'));
+
+            // 3. On affiche la galerie choisie
+            document.getElementById(nomGalerie).classList.add('active');
+
+            // 4. Si la fonction est appelée depuis un bouton du menu haut, on met à jour sa couleur
+            if (boutonClique) {
+                boutonClique.classList.add('active');
+            } else {
+                // Sinon, on cherche le bouton correspondant dans le menu pour l'activer visuellement
+                boutons.forEach(b => {
+                    if (b.getAttribute('onclick').includes(nomGalerie)) {
+                        b.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        function changerTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+</html>

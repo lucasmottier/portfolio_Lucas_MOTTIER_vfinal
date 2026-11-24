@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio Scolaire</title>
+    
+    <!-- LE CSS : C'est ici qu'on gère le design et les couleurs -->
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --primary: #2563eb;
+        }
+
+        /* Couleurs quand le mode sombre est activé */
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f1f1f1;
+            --card-bg: #1e1e1e;
+            --primary: #60a5fa;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Barre de navigation (les boutons des galeries) */
+        nav {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #e2e8f0;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        button.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Contenu principal */
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Les sections (galeries) sont cachées par défaut, sauf celle qui est active */
+        .galerie {
+            display: none;
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            animation: fadeIn 0.4s;
+        }
+
+        .galerie.active {
+            display: block;
+        }
+
+        /* Grille pour les projets */
+        .grille-projets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .carte {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LE HTML : C'est ici qu'on écrit le contenu de la page -->
+    <header>
+	<img src="photo.jpg" alt="Ma photo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+
+        <h1>Mon Portfolio</h1>
+        <button onclick="changerTheme()">🌓 Mode Sombre / Clair</button>
+        
+        <nav>
+            <button class="nav-btn active" onclick="ouvrirGalerie('presentation', this)">Présentation</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('formation', this)">Formation & Expériences</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('projets', this)">Projets</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('competences', this)">Compétences & Outils</button>
+            <button class="nav-btn" onclick="ouvrirGalerie('contact', this)">Contact</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. GALERIE PRÉSENTATION -->
+        <section id="presentation" class="galerie active">
+            <h2>Présentation</h2>
+            <p>Bonjour ! Je m'appelle <strong>[Ton Prénom]</strong>. Je suis actuellement élève/étudiant en [Ta filière].</p>
+            <p>Bienvenue sur mon portfolio scolaire où je présente mon parcours et mes créations.</p>
+        </section>
+
+        <!-- 2. GALERIE FORMATION & EXPÉRIENCES -->
+        <section id="formation" class="galerie">
+            <h2>Formation et Expériences Professionnelles</h2>
+            <h3>🎓 Formation</h3>
+            <ul>
+                <li><strong>2025 - 2026 :</strong> Nom de ton établissement / diplôme</li>
+                <li><strong>2024 :</strong> Brevet / Baccalauréat</li>
+            </ul>
+            <h3>💼 Expériences</h3>
+            <ul>
+                <li><strong>Stage chez [Nom de l'entreprise] :</strong> Ce que tu as appris ou fait.</li>
+            </ul>
+        </section>
+
+        <!-- 3. GALERIE PROJETS -->
+        <section id="projets" class="galerie">
+            <h2>Mes Projets</h2>
+            <div class="grille-projets">
+                <div class="carte">
+                    <h3>Projet 1</h3>
+                    <p>Description courte de ton premier projet scolaire ou personnel.</p>
+                </div>
+                <div class="carte">
+                    <h3>Projet 2</h3>
+                    <p>Description courte d'un deuxième projet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERIE COMPÉTENCES & OUTILS -->
+        <section id="competences" class="galerie">
+            <h2>Compétences et Outils</h2>
+            <p>Voici les outils que j'utilise et apprends :</p>
+            <ul>
+                <li><strong>Code :</strong> HTML (en cours d'apprentissage !)</li>
+                <li><strong>Bureautique :</strong> Word, PowerPoint, Excel</li>
+                <li><strong>Création :</strong> Canva, Photoshop...</li>
+            </ul>
+        </section>
+
+        <!-- 5. GALERIE CONTACT -->
+        <section id="contact" class="galerie">
+            <h2>Contact</h2>
+            <p>Tu peux me contacter par email : <strong>ton.email@exemple.com</strong></p>
+        </section>
+    </main>
+
+    <!-- LE JAVASCRIPT : C'est ici qu'on gère les clics et les interactions -->
+    <script>
+        function ouvrirGalerie(nomGalerie, boutonClique) {
+            // 1. On cache toutes les galeries
+            let galeries = document.querySelectorAll('.galerie');
+            galeries.forEach(g => g.classList.remove('active'));
+
+            // 2. On enlève la couleur active de tous les boutons
+            let boutons = document.querySelectorAll('.nav-btn');
+            boutons.forEach(b => b.classList.remove('active'));
+
+            // 3. On affiche la galerie choisie et on colore le bouton cliqué
+            document.getElementById(nomGalerie).classList.add('active');
+            boutonClique.classList.add('active');
+        }
+
+        function changerTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+</html>
